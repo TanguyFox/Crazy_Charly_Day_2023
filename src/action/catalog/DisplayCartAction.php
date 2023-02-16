@@ -72,7 +72,7 @@ HTML;
                                 </div>
                                 <div class="ms-3">
                                   <h5>{$product->nom}</h5>
-                                  <p class="small mb-0">{$product->lieu} - {$carbone}g/CO2 de carbone</p>
+                                  <p class="small mb-0">{$product->lieu} - {$carbone}g/km de carbone</p>
                                 </div>
                               </div>
                               <div class="d-flex flex-row align-items-center">
@@ -105,7 +105,7 @@ HTML;
                         <h5 class="small mb-2">Information</h5>
                         
                         <h5>Indicateur carbone total de la commande :</h5>
-                        <h5><i class="fa-brands fa-envira"></i>{$carboneTotal}g/CO2</h5>
+                        <h5><i class="fa-brands fa-envira"></i>{$carboneTotal}g/km</h5>
     
                         <hr class="my-4">
     
@@ -116,7 +116,7 @@ HTML;
     
                         <button type="button" class="btn btn-warning btn-block btn-lg" style="width: 60%">
                           <div>
-                            <a href="?action=confirmChart&"><span>Prendre rendez vous<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                            <a href="?action=displayCart&confirm=true"><span>Prendre rendez vous<i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
                           </div>
                         </button>
                       </div>
@@ -130,6 +130,24 @@ HTML;
       </div>
     </section>
 HTML;
+        }
+        if (isset($_GET['confirm'])){
+            $html .=<<<HTML
+<div class=".bg-light" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);padding: 2em; background: rgba(0,0,0,0.7); text-align: center; border-radius: 10px">
+    <h1 style="color: white">Prendre rendez vous</h1>
+    <input type="date">
+    <button type="button" class="btn btn-success btn-block btn-lg mx-2" style="width: 80%;">
+                          <div>
+                            <a href="?index.php&confirmChart=success"><span>Valider<i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
+                          </div>
+                        </button>
+    <button type="button" class="btn btn-warning btn-block btn-lg mx-2" style="width: 80%;">
+                          <div>
+                            <a href="?"><span>Retourner au catalogue<i class="fas fa-long-arrow-alt-right ms-2"></i></span></a>
+                          </div>
+                        </button>
+HTML;
+
         }
         return $html;
     }

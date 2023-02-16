@@ -1,9 +1,10 @@
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 session_start();
 
+use crazy\models\Users;
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();
@@ -16,7 +17,7 @@ if (isset($_SESSION['user'])) {
     $action = <<<END
         <a class="dropdown-item" href="account.php">Compte</a>
         <hr class="dropdown-divider">
-        <a class="dropdown-item text-danger" href="index.php?action=logout">Se déconnecter</a>
+        <a class="dropdown-item" href="index.php?action=logout">Se déconnecter</a>
     END;
 } else {
     $action = <<<END
@@ -41,6 +42,8 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <!-- CSS -->
     <link rel="stylesheet" href="src/css/style.css">
+    <!-- FONT AWESOME Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -62,7 +65,13 @@ if (isset($_SESSION['user'])) {
                     <a class="nav-link" href="?action=displayCart" tabindex="-1" aria-disabled="true">Panier</a>
                 </li>
             </ul>
-            <div class="dropdown me-3">
+            <a href="?action=admin" class="nav-link -me3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-person-video3 mx-2" viewBox="0 0 16 16">
+                <path d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>
+                <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>
+            </svg>
+            </a>
+            <div class="dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
