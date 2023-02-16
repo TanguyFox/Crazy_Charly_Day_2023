@@ -2,8 +2,8 @@
 
 namespace crazy\action\catalog;
 
-use crazy\models\Cart;
 use crazy\models\Produit;
+use crazy\models\Users;
 
 class DisplayCartAction
 {
@@ -17,10 +17,10 @@ class DisplayCartAction
         else {
             $nbProduits = 0;
             $prixTotal = 0;
-            $idUser = $_SESSION['user'];
-            $cartProducts = Cart::where('user_id', $idUser)->get();
+            $user = Users::where('id', $_SESSION['user'])->first();
+            $cartProducts = $user->products()->get();
             foreach ($cartProducts as $cP) {
-                $nbProduits += $cP->quantite;
+                $nbProduits += $cP->pivot->quantity;
             }
             $html .= <<<HTML
                 <section class="h-100 h-custom" style="background-color: #eee;">
@@ -53,11 +53,13 @@ HTML;
 HTML;
             } else {
                 foreach ($cartProducts as $cP) {
-                    $product = Produit::where('id', $cP->product_id)->first();
+                    $product = Produit::where('id', $cP->pivot->product_id)->first();
+                    $prixTotalProduct = $cP->pivot->quantity * $product->prix;
                     $cart[] = $product;
-                    $cart[] = $cP->quantite;
-                    $prixTotal += $product->prix * $cP->quantite;
-                    $carbone += $product->carbone * $product->distance * $cP->quantite;
+                    $cart[] = $cP->pivot->quantity;
+                    $prixTotal += $product->prix * $cP->pivot->quantity;
+                    echo $cP->pivot->quantite;
+                    $carbone += $product->carbone * $product->distance * $cP->pivot->quantity;
                     $html .= <<<HTML
                         <div class="card mb-3">
                           <div class="card-body">
@@ -70,7 +72,7 @@ HTML;
                                 </div>
                                 <div class="ms-3">
                                   <h5>{$product->nom}</h5>
-                                  <p class="small mb-0">{$product->lieu}</p>
+                                  <p class="small mb-0">{$product->lieu} - {$carbone}g de carbone</p>
                                 </div>
                               </div>
                               <div class="d-flex flex-row align-items-center">
@@ -78,7 +80,7 @@ HTML;
                                   <h5 class="fw-normal mb-0">{$cP->quantite}</h5>
                                 </div>
                                 <div style="width: 80px;">
-                                  <h5 class="mb-0">{$product->prix}</h5>
+                                  <h5 class="mb-0">{$prixTotalProduct}€</h5>
                                 </div>
                                 <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                               </div>

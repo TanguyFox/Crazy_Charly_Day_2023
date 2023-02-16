@@ -27,4 +27,9 @@ class Users extends Eloquent\Model {
 		return $this->hasMany(Order::class, 'id', 'id');
 	}
 
+    public function products(): Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Produit::class, 'cart', 'user_id', 'product_id')->withPivot('quantity');
+    }
+
 }
