@@ -3,7 +3,7 @@
 require 'header.php';
 
 echo '<div class="container mt-3">
-<div class="row row-cols-3">';
+<div class="row">';
 
 use crazy\models\Produit;
 $products = Produit::all();
@@ -23,3 +23,5 @@ foreach ($products as $product) {
 }
 
 echo '</div></div>';
+
+require 'footer.php';
