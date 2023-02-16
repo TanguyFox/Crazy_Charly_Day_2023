@@ -7,14 +7,14 @@ use crazy\models\Produit;
 class ProductsAction
 {
 
-    public function execute(): string
+    public function execute() : string
     {
 
-        echo '<div class="container mt-3">
-<div class="row">';
+        $catalogue  = '<div class="container mt-3">
+        <div class="row">';
         $products = Produit::all();
         foreach ($products as $product) {
-            echo <<<END
+            $catalogue .= <<<END
         <div class="col">
             <div class="card" style="width: 18rem">
                 <img class="card-img-top" src="src/img/{$product->id}.jpg" alt="Card image cap">
@@ -28,6 +28,7 @@ class ProductsAction
     END;
         }
 
-        echo '</div></div>';
+        $catalogue .= '</div></div>';
+        return $catalogue;
     }
 }
