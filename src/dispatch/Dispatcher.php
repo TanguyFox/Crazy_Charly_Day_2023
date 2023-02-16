@@ -3,6 +3,7 @@
 namespace crazy\dispatch;
 
 use crazy\action\ProductsAction;
+use crazy\action\ProductDetailsAction;
 use Exception;
 
 class Dispatcher
@@ -20,6 +21,7 @@ class Dispatcher
             'signin' => new SigninAction(),
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
+            'productDetails' => new ProductDetailsAction(),
             default => new ProductsAction()
         };
         try {
