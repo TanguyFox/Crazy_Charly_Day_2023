@@ -2,6 +2,7 @@
 
 namespace crazy\dispatch;
 
+use crazy\action\catalog\AdminAction;
 use crazy\action\catalog\AddToCartAction;
 use crazy\action\catalog\DisplayCartAction;
 use crazy\action\catalog\MapAction;
@@ -31,6 +32,7 @@ class Dispatcher
             'productDetails' => new ProductDetailsAction(),
             'addToChart' => new AddToCartAction(),
             'displayCart' => new DisplayCartAction(),
+	        'admin' => new AdminAction(),
             default => new ProductsAction()
         };
         $this->renderPage($action->execute());
