@@ -4,7 +4,6 @@ namespace crazy\dispatch;
 
 use crazy\action\ProductsAction;
 use crazy\action\ProductDetailsAction;
-use crazy\action\AddToCartAction;
 use Exception;
 
 class Dispatcher
@@ -19,6 +18,8 @@ class Dispatcher
     public function run(): void
     {
         $action = match ($this->action) {
+            'map' => new MapAction(),
+            'catalogue'=> new ProductsAction(),
             'products' => new ProductsAction(),
             'productDetails' => new ProductDetailsAction(),
             'addToChart' => new AddToCartAction(),
