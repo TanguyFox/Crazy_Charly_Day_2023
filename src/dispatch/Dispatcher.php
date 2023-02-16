@@ -2,6 +2,7 @@
 
 namespace crazy\dispatch;
 
+use crazy\action\MapAction;
 use crazy\action\ProductsAction;
 use Exception;
 
@@ -17,9 +18,9 @@ class Dispatcher
     public function run(): void
     {
         $action = match ($this->action) {
-            'signin' => new SigninAction(),
-            'register' => new RegisterAction(),
-            'logout' => new LogoutAction(),
+            'map' => new MapAction(),
+            // 'register' => new RegisterAction(),
+            // 'logout' => new LogoutAction(),
             default => new ProductsAction()
         };
         try {
