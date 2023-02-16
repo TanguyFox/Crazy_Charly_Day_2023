@@ -96,7 +96,7 @@ END;
             }
 
             foreach ($productsSearch as $pr) {
-                $catalogue = '<div class="container mt-3">
+                $catalogue .= '<div class="container mt-3">
         <div class="row">';
                 $catalogue .= <<<END
                                 <div class="col">
