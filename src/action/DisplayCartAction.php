@@ -15,11 +15,11 @@ class DisplayCartAction
         else {*/
             $nbProduits = 0;
             $prixTotal = 0;
-            $idUser = $_SESSION['user']->id;
+            /*$idUser = $_SESSION['user'];
             $cartProducts = Cart::where('user_id', $idUser)->get();
             foreach ($cartProducts as $cP) {
                 $nbProduits += $cP->quantite;
-            }
+            }*/
    $html .= <<<HTML
 <section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container py-5 h-100">
@@ -31,34 +31,32 @@ class DisplayCartAction
             <div class="row">
 
               <div class="col-lg-7">
-                <h5 class="mb-3"><a href="#!" class="text-body"><i
-                      class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                <h5 class="mb-3"><a href="?action=ProductsAction" class="text-body"><i
+                      class="fas fa-long-arrow-alt-left me-2"></i>Retourner au catalogue</a></h5>
                 <hr>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p class="mb-1">Shopping cart</p>
-                    <p class="mb-0">You have 4 items in your cart</p>
+                    <p class="mb-1">Panier</p>
+                    <p class="mb-0">Vous avez {$nbProduits} dans votre panier</p>
                   </div>
-                  <div>
-                    <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                        class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
-                  </div>
-                </div>
-              </div>
+                </div>   
 HTML;
         if ($nbProduits == 0) {
             $html .= <<<HTML
                 <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <div>
-                        <div>
-                          <h5>Votre panier est vide</h5>
+                      <div class="d-flex flex-row align-items-center">
+                        <div class="ms-3">
+                          <h5>Le panier est vide</h5>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 HTML;
-        } else {
+        } /*else {
             foreach ($cartProducts as $cP) {
                 $product = Produit::where('id', $cP->product_id)->first();
                 $prixTotal += $product->prix * $cP->quantite;
@@ -91,19 +89,18 @@ HTML;
                 </div>
 HTML;
             }
-        }
+        }*/
             $html .=<<<HTML
+              </div>
               <div class="col-lg-5">
 
                 <div class="card bg-primary text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Card details</h5>
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                      <h5 class="mb-0">Carte Bancaire</h5>
                     </div>
 
-                    <p class="small mb-2">Card type</p>
+                    <p class="small mb-2">Type de carte</p>
                     <a href="#!" type="submit" class="text-white"><i
                         class="fab fa-cc-mastercard fa-2x me-2"></i></a>
                     <a href="#!" type="submit" class="text-white"><i
@@ -115,14 +112,14 @@ HTML;
                     <form class="mt-4">
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                          placeholder="Cardholder's Name" />
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
+                          placeholder="Nom du titulaire" />
+                        <label class="form-label" for="typeName">Nom du titulaire</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
                           placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                        <label class="form-label" for="typeText">Card Number</label>
+                        <label class="form-label" for="typeText">Numéro de carte</label>
                       </div>
 
                       <div class="row mb-4">
@@ -137,7 +134,7 @@ HTML;
                           <div class="form-outline form-white">
                             <input type="password" id="typeText" class="form-control form-control-lg"
                               placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                            <label class="form-label" for="typeText">Cvv</label>
+                            <label class="form-label" for="typeText">CVV</label>
                           </div>
                         </div>
                       </div>
@@ -146,25 +143,14 @@ HTML;
 
                     <hr class="my-4">
 
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">$4798.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
-                    </div>
-
                     <div class="d-flex justify-content-between mb-4">
                       <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
+                      <p class="mb-2">{$prixTotal}€</p>
                     </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg">
-                      <div class="d-flex justify-content-between">
-                        <span>$4818.00</span>
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                    <button type="button" class="btn btn-warning btn-block btn-lg" style="width: 50%">
+                      <div>
+                        <span>Payer<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                       </div>
                     </button>
 
