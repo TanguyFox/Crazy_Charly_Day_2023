@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+require 'vendor/autoload.php';
+session_start();
+
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();

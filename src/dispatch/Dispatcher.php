@@ -16,7 +16,6 @@ class Dispatcher
 
     public function run(): void
     {
-        require 'header.php';
         $action = match ($this->action) {
             'signin' => new SigninAction(),
             'register' => new RegisterAction(),
@@ -28,7 +27,6 @@ class Dispatcher
         } catch (Exception $e) {
             $this->renderPage($e->getMessage());
         }
-        require 'footer.php';
     }
 
     private function renderPage(string $html): void
