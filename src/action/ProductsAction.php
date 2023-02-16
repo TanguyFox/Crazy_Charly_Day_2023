@@ -96,11 +96,9 @@ END;
             }
 
             foreach ($productsSearch as $pr) {
-                $catalogue .= '<div class="container mt-3">
-        <div class="row">';
                 $catalogue .= <<<END
-                                <div class="col">
-                    <div class="card" style="width: 18rem">
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card w-auto h-auto m-2">
                         <img class="card-img-top" src="src/img/{$pr->id}.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{$pr->nom}</h5>
