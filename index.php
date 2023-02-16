@@ -2,8 +2,8 @@
 
 require 'header.php';
 
-echo '<div class="container mt-3">
-<div class="row">';
+echo '<div class="container my-3">
+<div class="row align-items-center">';
 
 use crazy\models\Produit;
 $products = Produit::all();
