@@ -15,6 +15,7 @@ class ProductsAction
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $products = Produit::all();
             $catalogue = <<<END
+                    <div class="align-content-xl-start">
                         <form class="d-flex" method='post' action='?action=catalogue'>
                         <input class="form-control me-2" type="search" name="search" placeholder="Produit" aria-label="Search">
                         <label>Trier par</label>
@@ -43,6 +44,7 @@ class ProductsAction
                         </select>
                         <button class="btn btn-outline-success" type="submit">Rechercher</button>
                     </form>
+                  </div>
             END;
             $catalogue .= '<div class="container mt-3">
         <div class="row">';
@@ -60,13 +62,15 @@ class ProductsAction
         </div>
     END;
             }
-
-            $catalogue .= '</div></div>';
         } else {
 
+            $search = filter_var($_POST['search']);
+            $prod =Produit::where('nom','like','%'.$search.'%')->get();
 
-
-
+            $productsSearch = [];
+            foreach ($prod as $p){
+                array_push($productsSearch,$p);
+            }
             $catalogue = '<div class="container mt-3">
         <div class="row">';
             foreach ($productsSearch as $pr) {
@@ -83,9 +87,6 @@ class ProductsAction
         </div>
     END;
             }
-            echo $ville;
-            echo $categ;
-            echo $search;
         }
         $catalogue .= '</div></div>';
 
