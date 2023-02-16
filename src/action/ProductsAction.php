@@ -34,7 +34,7 @@ class ProductsAction
             $search = filter_var($_POST['bar'], FILTER_SANITIZE_SPECIAL_CHARS);
             echo $search;
             $productsSearch = [];
-            $prod = Produit::where("nom", 'like', $search . '%')->get();
+            $prod = Produit::where("nom", 'like', '%'.$search . '%')->get();
             foreach ($prod as $p) {
                 array_push($productsSearch, $p);
             }
