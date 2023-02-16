@@ -19,19 +19,19 @@
 | 2. Affichage d'un produit                     |     Elian      |    Ok    |
 | 3. Affichage du catalogue dans une carte      |      Paul      |    Ok    |
 | 4. Recherche                                  |     Tanguy     |    Ok    |
-| 5. Ajout au panier                            |     Elian      | En cours |
-| 6. Affichage panier                           |     Elian      | En cours |
+| 5. Ajout au panier                            |     Elian      |    Ok    |
+| 6. Affichage panier                           |     Elian      |    Ok    |
 | 7. Validation du panier                       |     Elian      | En cours |
-| 8. Liste générale des commandes validées      |     Jules      | En cours |
+| 8. Liste générale des commandes validées      |     Jules      |    Ok    |
 | 9. Création d’un produit                      |      ---       |   ---    |
 | 10. Modification d’un produit                 |      ---       |   ---    |
-| 11. Classement des produits                   | Tanguy, Damien | En cours |
+| 11. Classement des produits                   | Tanguy, Damien |    Ok    |
 | 12. Produits mis en avant                     |      ---       |   ---    |
 | 13. Recommandations                           |      ---       |   ---    |
 | 14. Gestion des hiérarchies de catégories     |      ---       |   ---    |
-| 15. Création d’un nouveau compte              |  Jules, Paul   | En cours |
-| 16. Accès avec authentification               |  Jules, Paul   | En cours |
-| 17. Modification de compte                    |      ---       |   ---    |
+| 15. Création d’un nouveau compte              |  Jules, Paul   |    Ok    |
+| 16. Accès avec authentification               |  Jules, Paul   |    Ok    |
+| 17. Modification de compte                    |      Paul      | En cours |
 | 18. Affichage de la liste des utilisateurs    |      ---       |   ---    |
 | 19. Compte administrateur                     |      ---       |   ---    |
 | 20. Favoris utilisateurs                      |      ---       |   ---    |
