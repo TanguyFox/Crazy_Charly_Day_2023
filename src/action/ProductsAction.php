@@ -21,7 +21,19 @@ class ProductsAction
                         <div class="card-body">
                             <h5 class="card-title">{$product->nom}</h5>
                             <p class="card-text">$product->description</p>
-                            <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-text">{$product->prix} €</p>
+                                </div>
+                                <div class="col">
+                                    <p class="card-text">{$product->stock} en stock</p>
+                                </div>
+                            </div>
+            
+                            <div class="row">
+                                <a href="#" class="btn btn-warning col">Ajouter au panier</a>
+                                <a href="?action=productDetails&id={$product->id}" class="btn btn-primary col">Voir le produit</a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace crazy\dispatch;
 
 use crazy\action\MapAction;
 use crazy\action\ProductsAction;
+use crazy\action\ProductDetailsAction;
 use Exception;
 
 class Dispatcher
@@ -19,8 +20,6 @@ class Dispatcher
     {
         $action = match ($this->action) {
             'map' => new MapAction(),
-            // 'register' => new RegisterAction(),
-            // 'logout' => new LogoutAction(),
             default => new ProductsAction()
         };
         try {

@@ -49,6 +49,16 @@ INSERT INTO produit (id, categorie, nom, prix, poids, description, detail, lieu,
 (14, 5, 'Ronde des saisons \"Nature\"', '2.90', 100, 'Au lait de vaches nourries sans OGM.', 'Ingrédients : lait crue, ferments lactiques, présure, sel<p>Producteur :L\'étoile de la colline', 'Goviller', 32, 48.497536, 6.009661),
 (15, 5, 'La Bonne Foi Bio', '15.97', 145, 'Noix de cajou*, infusion de champignons*, huile de coco*, miso de riz* (soja), vin* (sulfites), beurre de cacao*, agar*, épices*, huile essentielle de poivre noir*<p>*produits issus de l\'agriculture biologique<p>Infos allergènes : Noix de cajou, soja, sulfites', 'La Bonne Foi est une terrine 100% végétale & BIO, sans foie, ni gras. C’est la version vegan du foie gras traditionnel.<p>À conserver entre 0°C et 4°C<p>À consommer dans les 5 jours après ouverture<p>À servir très frais !', 'Sarralbe', 85, 48.999638, 7.029931);
 
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`
+(
+    `user_id`  INT                 NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `nom`      VARCHAR(255),
+    `prenom`   VARCHAR(255),
+    `email`    VARCHAR(255) unique NOT NULL,
+    `password` VARCHAR(255)        NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 ALTER TABLE categorie
   ADD PRIMARY KEY (id);
