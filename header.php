@@ -60,6 +60,9 @@ $db->bootEloquent();
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?action=displayCart" tabindex="-1" aria-disabled="true">Panier</a>
+                    </li>
                 </ul>
                 <a href="index.php" class="link nav-item me-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-person" viewBox="0 0 16 16">
