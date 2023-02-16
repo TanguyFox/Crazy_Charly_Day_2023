@@ -1,6 +1,7 @@
 <?php
 
-namespace crazy\action;
+namespace crazy\action\catalog;
+
 use crazy\models\Produit;
 
 class ProductDetailsAction

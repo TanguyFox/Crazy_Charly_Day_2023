@@ -1,6 +1,6 @@
 <?php
 
-namespace crazy\action;
+namespace crazy\action\catalog;
 
 use crazy\models\Cart;
 use crazy\models\Produit;
