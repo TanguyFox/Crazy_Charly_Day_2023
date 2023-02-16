@@ -12,3 +12,6 @@ composer.lock
 
 # logs and databases #
 courtcircuit.sql
+
+.idea/
+.vscode/
