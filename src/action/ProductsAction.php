@@ -31,7 +31,7 @@ class ProductsAction
                             </div>
             
                             <div class="row">
-                                <a href="?action=addToChart&id={$product->id}" class="btn btn-warning col">Ajouter au panier</a>
+                                <a href="?action=addToChart&redirection=ProductsAction&id={$product->id}" class="btn btn-warning col">Ajouter au panier</a>
                                 <a href="?action=productDetails&id={$product->id}" class="btn btn-primary col">Voir le produit</a>
                             </div>
                         </div>
