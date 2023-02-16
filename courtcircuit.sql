@@ -54,10 +54,9 @@ CREATE TABLE `users`
 (
     `id`  INT                 NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `nom`      VARCHAR(255),
-    `prenom`   VARCHAR(255),
     `email`    VARCHAR(255) unique NOT NULL,
-    `telephone` VARCHAR(255),
-    `password` VARCHAR(255)        NOT NULL
+    `password` VARCHAR(255)        NOT NULL,
+    `telephone` VARCHAR(255)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE categorie
