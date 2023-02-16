@@ -3,12 +3,19 @@
 namespace crazy\action\catalog;
 
 use crazy\models\Produit;
+use crazy\models\Users;
 
 class ProductsAction
 {
 
     public function execute(): string
     {
+        if (isset($_GET['confirmChart'])){
+            $user_id = $_SESSION['user'];
+            $user = Users::where('id', $user_id)->first();
+            //remove all products in user cart;
+            $user->products()->detach();
+        }
         $catalogue = <<<END
 
         <div class="container mt-3">

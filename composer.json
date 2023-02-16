@@ -1,7 +1,7 @@
 {
     "require": {
         "illuminate/database": "^8.73.0",
-        "php": ">=7.3"
+        "php": ">=8.0"
     },
 
     "autoload": {
