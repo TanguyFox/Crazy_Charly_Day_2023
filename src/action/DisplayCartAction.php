@@ -9,18 +9,19 @@ class DisplayCartAction
 {
     public function execute(): string
     {
+        $cart = [];
         $html = "";
         /*if (!isset($_SESSION['user']))
             header('Location: index.php?action=login&error=needConnection');
         else {*/
-            $nbProduits = 0;
-            $prixTotal = 0;
-            /*$idUser = $_SESSION['user'];
-            $cartProducts = Cart::where('user_id', $idUser)->get();
-            foreach ($cartProducts as $cP) {
-                $nbProduits += $cP->quantite;
-            }*/
-   $html .= <<<HTML
+        $nbProduits = 0;
+        $prixTotal = 0;
+        /*$idUser = $_SESSION['user'];
+        $cartProducts = Cart::where('user_id', $idUser)->get();
+        foreach ($cartProducts as $cP) {
+            $nbProduits += $cP->quantite;
+        }*/
+        $html .= <<<HTML
 <section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,6 +60,8 @@ HTML;
         } /*else {
             foreach ($cartProducts as $cP) {
                 $product = Produit::where('id', $cP->product_id)->first();
+                $cart[] = $product;
+                $cart[] = $cP->quantite;
                 $prixTotal += $product->prix * $cP->quantite;
                 $html .= <<<HTML
                 <div class="card mb-3">
@@ -90,7 +93,8 @@ HTML;
 HTML;
             }
         }*/
-            $html .=<<<HTML
+        $_SESSION['cart'] = $cart;
+        $html .= <<<HTML
               </div>
               <div class="col-lg-5">
 
@@ -150,7 +154,7 @@ HTML;
 
                     <button type="button" class="btn btn-warning btn-block btn-lg" style="width: 50%">
                       <div>
-                        <span>Payer<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <a href="?action=confirmChart&" onclick="cartSession()"><span>Payer<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                       </div>
                     </button>
 
