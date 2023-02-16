@@ -12,6 +12,6 @@ class Produit extends Eloquent\Model
 
     public function categorie(): Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo('models\categorie', 'categorie');
+        return $this->belongsTo('crazy\models\Categorie', 'categorie','id');
     }
 }
