@@ -9,7 +9,7 @@ class DisplayCartAction
 {
     public function execute(): string
     {
-        $carbone = 0;
+        $carboneTotal = 0;
         $cart = [];
         $html = "";
         if (!isset($_SESSION['user']))
@@ -55,11 +55,11 @@ HTML;
                 foreach ($cartProducts as $cP) {
                     $product = Produit::where('id', $cP->pivot->product_id)->first();
                     $prixTotalProduct = $cP->pivot->quantity * $product->prix;
+                    $prixTotal += $prixTotalProduct;
                     $cart[] = $product;
-                    $cart[] = $cP->pivot->quantity;
-                    $prixTotal += $product->prix * $cP->pivot->quantity;
-                    echo $cP->pivot->quantite;
-                    $carbone += $product->carbone * $product->distance * $cP->pivot->quantity;
+                    $cart[] = $cP->pivot->quantity;;
+                    $carbone = $product->poids * $product->distance * $cP->pivot->quantity;
+                    $carboneTotal += $carbone;
                     $html .= <<<HTML
                         <div class="card mb-3">
                           <div class="card-body">
@@ -72,7 +72,7 @@ HTML;
                                 </div>
                                 <div class="ms-3">
                                   <h5>{$product->nom}</h5>
-                                  <p class="small mb-0">{$product->lieu} - {$carbone}g de carbone</p>
+                                  <p class="small mb-0">{$product->lieu} - {$carbone}g/CO2 de carbone</p>
                                 </div>
                               </div>
                               <div class="d-flex flex-row align-items-center">
@@ -89,7 +89,7 @@ HTML;
                         </div>
 HTML;
                 }
-            }
+            };
             $_SESSION['cart'] = $cart;
             $html .= <<<HTML
                   </div>
@@ -105,7 +105,7 @@ HTML;
                         <h5 class="small mb-2">Information</h5>
                         
                         <h5>Indicateur carbone total de la commande :</h5>
-                        <h5><i class="fa-brands fa-envira"></i>{$carbone}g</h5>
+                        <h5><i class="fa-brands fa-envira"></i>{$carboneTotal}g/CO2</h5>
     
                         <hr class="my-4">
     
