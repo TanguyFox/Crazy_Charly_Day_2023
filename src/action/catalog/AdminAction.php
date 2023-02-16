@@ -17,11 +17,11 @@ class AdminAction {
 						<th scope="col">Date RDV</th>
 						<th scope="col">Lieu RDV</th>
 					</tr>
-				</thead>
-				<tbody>';
+				</thead>';
 		$orders = Order::all();
 		foreach ($orders as $order) {
 			$catalogue .= <<<HTML
+				<tbody>	
 				<tr>
 					<td>{$order->id}</td>
 					<td>{$order->user_id}</td>
