@@ -87,8 +87,43 @@ END;
             }
         } else {
 
-            $search = filter_var($_POST['search']);
-            $prod = Produit::where('nom', 'like', '%' . $search . '%')->get();
+            if ($_POST['ville'] != "" && $_POST['categ'] != "" && $_POST['search'] != ""){
+                $ville = filter_var($_POST['ville']);
+                $categorie = filter_var($_POST['categ']);
+                $search = filter_var($_POST['search']);
+                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->where('nom', 'like', '%' . $search . '%')->get();
+            } else if ($_POST['ville'] != "" && $_POST['categ'] != ""){
+                $ville = filter_var($_POST['ville']);
+                $categorie = filter_var($_POST['categ']);
+                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->get();
+            }else if ($_POST['search'] != ""){
+                $search = filter_var($_POST['search']);
+                $prod = Produit::where('nom', 'like', '%' . $search . '%')->get();
+            } else if ($_POST['ville'] != ""){
+                $ville = filter_var($_POST['ville']);
+                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->get();
+            } else if ($_POST['categ'] != ""){
+                $categorie = filter_var($_POST['categorie']);
+                $prod = Produit::where('categorie', 'like', '%' . $categorie . '%')->get();
+            }
+
+            if (count($prod) == 0) {
+                $catalogue .= <<<END
+                    <div class="col-12">
+                        <div class="alert alert-danger my-4" role="alert">
+                            Aucun produit ne correspond à votre recherche.
+                        </div>
+                    </div>
+                END;
+            } else {
+                $catalogue .= <<<END
+                    <div class="col-12">
+                        <div class="alert alert-success my-4" role="alert">
+                            Voici les produits correspondant à votre recherche.
+                        </div>
+                    </div>
+                END;
+            }
 
             $productsSearch = [];
             foreach ($prod as $p) {
