@@ -52,7 +52,7 @@ INSERT INTO produit (id, categorie, nom, prix, poids, description, detail, lieu,
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`
 (
-    `user_id`  INT                 NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `id`  INT                 NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `nom`      VARCHAR(255),
     `prenom`   VARCHAR(255),
     `email`    VARCHAR(255) unique NOT NULL,
