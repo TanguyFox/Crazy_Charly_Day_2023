@@ -2,6 +2,7 @@
 
 namespace crazy\dispatch;
 
+use crazy\action\MapAction;
 use crazy\action\ProductsAction;
 use crazy\action\ProductDetailsAction;
 use Exception;
