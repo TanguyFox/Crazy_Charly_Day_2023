@@ -4,12 +4,27 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 session_start();
 
+use crazy\models\Users;
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();
 $db->addConnection(parse_ini_file('src/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
+
+$action = '';
+if (isset($_SESSION['user'])) {
+    $action = <<<END
+        <a class="dropdown-item" href="account.php">Compte</a>
+        <hr class="dropdown-divider">
+        <a class="dropdown-item" href="index.php?action=logout">Se déconnecter</a>
+    END;
+} else {
+    $action = <<<END
+        <a class="dropdown-item" href="authentication.php">Se connecter</a>
+        <a class="dropdown-item" href="authentication.php?action=register">S'inscrire</a>
+    END;
+}
 
 ?>
 
@@ -46,35 +61,20 @@ $db->bootEloquent();
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=map">Carte</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?action=displayCart" tabindex="-1" aria-disabled="true">Panier</a>
                     </li>
                 </ul>
-                <a href="authentication.php" class="link nav-item me-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-person" viewBox="0 0 16 16">
-                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
-                    </svg>
-                </a>
-                <form class="d-flex" method='post' action='?action=catalogue'>
-                    <input class="form-control me-2" type="search" name="search" placeholder="Rechercher" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                </form>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                        <?php echo $action; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

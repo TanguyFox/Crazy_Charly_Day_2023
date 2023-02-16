@@ -6,12 +6,10 @@ use crazy\auth\Authentication;
 
 $error = '';
 
-if (isset($_SESSION['user'])) unset($_SESSION['user']);
-
 // si c'est une requête de login
 if (isset($_POST['loginEmail']) && isset($_POST['loginPassword'])) {
-    $email = trim($_POST['loginEmail']);
-    $password = trim($_POST['loginPassword']);
+    $email = htmlspecialchars(trim($_POST['loginEmail']));
+    $password = htmlspecialchars(trim($_POST['loginPassword']));
     $user = Authentication::authenticate($email, $password);
     if (!$user) {
         $error = 'Email ou mot de passe incorrect';
@@ -24,11 +22,11 @@ if (isset($_POST['loginEmail']) && isset($_POST['loginPassword'])) {
 
     // si c'est une requête de register
 } else if (isset($_POST['registerName']) && isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['registerRepeatPassword']) && isset($_POST['registerPhone'])) {
-    $name = trim($_POST['registerName']);
-    $email = trim($_POST['registerEmail']);
-    $password = trim($_POST['registerPassword']);
-    $repeatPassword = trim($_POST['registerRepeatPassword']);
-    $telephone = trim($_POST['registerPhone']);
+    $name = htmlspecialchars(trim($_POST['registerName']));
+    $email = htmlspecialchars(trim($_POST['registerEmail']));
+    $password = htmlspecialchars(trim($_POST['registerPassword']));
+    $repeatPassword = htmlspecialchars(trim($_POST['registerRepeatPassword']));
+    $telephone = htmlspecialchars(trim($_POST['registerPhone']));
     if ($password !== $repeatPassword) {
         $error = 'Les mots de passe ne correspondent pas';
     } else {
