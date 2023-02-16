@@ -96,11 +96,9 @@ END;
             }
 
             foreach ($productsSearch as $pr) {
-                $catalogue .= '<div class="container mt-3">
-        <div class="row">';
                 $catalogue .= <<<END
-                                <div class="col">
-                    <div class="card" style="width: 18rem">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card w-auto h-auto m-2">
                         <img class="card-img-top" src="src/img/{$pr->id}.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{$pr->nom}</h5>
@@ -117,7 +115,6 @@ END;
                                         </svg>{$pr->prix} €</p>
                                 </div>
                             </div>
-            
                             <div class="row">
                                 <a href="?action=addToChart&id={$pr->id}" class="btn btn-warning col d-flex align-items-center justify-content-center mx-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart4 me-0.5" viewBox="0 0 16 16">
@@ -132,7 +129,7 @@ END;
                         </div>
                     </div>
                 </div>
-            END;
+                END;
             }
         }
         $catalogue .= '</div></div>';
