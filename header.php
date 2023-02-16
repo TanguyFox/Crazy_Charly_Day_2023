@@ -75,6 +75,10 @@ if (isset($_SESSION['user'])) {
                         <?php echo $action; ?>
                     </div>
                 </div>
+                <form class="d-flex" method='post' action='?action=catalogue'>
+                    <input class="form-control me-2" type="search" name="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                </form>
             </div>
         </div>
     </nav>
