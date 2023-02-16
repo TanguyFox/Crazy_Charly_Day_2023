@@ -9,15 +9,11 @@ class ProductsAction
 
     public function execute(): string
     {
+        $catalogue = <<<END
 
-        $catalogue = '<div class="container mt-3">
-        <div class="row">';
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $products = Produit::all();
-            foreach ($products as $product) {
-            $catalogue = <<<END
-                    <div class="align-content-xl-start">
-                        <form class="d-flex" method='post' action='?action=catalogue'>
+        <div class="container mt-3">
+        <div class="row">
+        <form class="d-flex" method='post' action='?action=catalogue'>
                         <input class="form-control me-2" type="search" name="search" placeholder="Produit" aria-label="Search">
                         <label>Trier par</label>
                         <select class="form-select" name="ville">
@@ -45,6 +41,15 @@ class ProductsAction
                         </select>
                         <button class="btn btn-outline-success" type="submit">Rechercher</button>
                     </form>
+        
+END;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $products = Produit::all();
+            $catalogue .= '<div class="align-content-xl-start">';
+
+            foreach ($products as $product) {
+                $catalogue .= <<<END
                   <div class="col">
                     <div class="card" style="width: 18rem">
                         <img class="card-img-top" src="src/img/{$product->id}.jpg" alt="Card image cap">
@@ -91,7 +96,7 @@ class ProductsAction
             }
 
             foreach ($productsSearch as $pr) {
-            $catalogue = '<div class="container mt-3">
+                $catalogue = '<div class="container mt-3">
         <div class="row">';
                 $catalogue .= <<<END
                                 <div class="col">
