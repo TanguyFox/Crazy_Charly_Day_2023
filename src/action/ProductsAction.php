@@ -39,7 +39,7 @@ class ProductsAction
                             <option value="4">Cosmétiques</option>
                             <option value="5">Produits frais</option>
                         </select>
-                        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                        <button class="btn btn-outline-success" type="submit">Valider</button>
                     </form>
         
 END;
