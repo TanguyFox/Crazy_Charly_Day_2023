@@ -20,7 +20,8 @@ class Dispatcher
     {
         $action = match ($this->action) {
             'map' => new MapAction(),
-            default => new ProductsAction()
+            'catalogue'=> new ProductsAction()
+            //default => new ProductsAction()
         };
         try {
             $this->renderPage($action->execute());
