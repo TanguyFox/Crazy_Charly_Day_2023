@@ -32,7 +32,7 @@ class ProductDetailsAction
                             <div class="about">{$product->description}</div>
                             <div class="row">
                             <div class="cart mt-4 align-items-center col">
-                                <a href="?action=addToChart&id={$product->id}"><button class="btn btn-danger text-uppercase mr-2 px-4">Ajouter au panier</button>
+                                <a href="?action=addToChart&redirection=ProductsDetailsAction&id={$product->id}"><button class="btn btn-danger text-uppercase mr-2 px-4">Ajouter au panier</button>
                             </div>
                             <div class="cart mt-4 align-items-center col">
                                 <a href="?"><button class="btn btn-primary text-uppercase mr-2 px-4">Retour</button></a>
