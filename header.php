@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
+session_start();
+
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();
@@ -25,7 +27,7 @@ $db->bootEloquent();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

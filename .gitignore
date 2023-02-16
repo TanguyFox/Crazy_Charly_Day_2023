@@ -9,3 +9,6 @@ composer.lock
 
 # config files #
 /src/conf/
+
+# logs and databases #
+courtcircuit.sql
