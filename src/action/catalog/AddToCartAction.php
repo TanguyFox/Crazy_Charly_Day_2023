@@ -27,7 +27,7 @@ class AddToCartAction
             } else {
                 $user->products()->save($product, ['quantity' => 1]);
             }
-            header('Location: index.php?action=' . $redirection);
+            header("Location: index.php?action=$redirection&success=addToCart&id=$idProduct");
         }
         return "";
     }
