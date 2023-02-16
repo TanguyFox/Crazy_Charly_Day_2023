@@ -2,7 +2,7 @@
 
 namespace crazy\action;
 
-use crazy\models\Utilisateur;
+use crazy\models\Users;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class ProfilAction {
@@ -31,10 +31,10 @@ class ProfilAction {
 							// Vérification de la correspondance des mots de passe :
 							if ($pass == $pass2) {
 								// Vérification de l'unicité de l'email :
-								$user = Utilisateur::where('email', '=', $email)->first();
+								$user = Users::where('email', '=', $email)->first();
 								if ($user == []) {
 									// Création de l'utilisateur :
-									$user = new Utilisateur();
+									$user = new Users();
 									$user->nom = $nom;
 									$user->prenom = $prenom;
 									$user->email = $email;
@@ -65,7 +65,7 @@ class ProfilAction {
 	/**
 	 * Affiche et traite le formulaire de connexion
 	 */
-	public function connexion(Response $rs, $args): Response {
+	public function connexion(Response $rs): Response {
 		$rs->getBody()->write("TODO");
 		// Si le formulaire a été soumis :
 		if (isset($_POST['submit'])) {
@@ -81,7 +81,7 @@ class ProfilAction {
 						// Vérification de la validité de l'email :
 						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 							// Vérification de l'existence de l'utilisateur :
-							$user = Utilisateur::where('email', '=', $email)->first();
+							$user = Users::where('email', '=', $email)->first();
 							if ($user != []) {
 								// Vérification du mot de passe :
 								if (password_verify($pass, $user->password)) {
@@ -120,7 +120,7 @@ class ProfilAction {
 		// Vérification de l'existence du token :
 		if (isset($args['token'])) {
 			// Vérification de l'existence de l'utilisateur :
-			$user = Utilisateur::where('token', '=', $args['token'])->first();
+			$user = Users::where('token', '=', $args['token'])->first();
 			if ($user != []) {
 				// Mise à jour de l'utilisateur :
 				$user->token = null;
