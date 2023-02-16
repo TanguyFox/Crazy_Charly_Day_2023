@@ -34,7 +34,7 @@ if (isset($_POST['loginEmail']) && isset($_POST['loginPassword'])) {
             $error = $user;
         } else {
             $_SESSION['user'] = $user->id;
-            header('Location: index.php');  
+            header('Location: index.php');
             exit;
         }
     }
