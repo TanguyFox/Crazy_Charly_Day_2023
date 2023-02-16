@@ -39,7 +39,7 @@ class ProductsAction
                             <option value="4">Cosmétiques</option>
                             <option value="5">Produits frais</option>
                         </select>
-                        <button class="btn btn-outline-success" type="submit">Valider</button>
+                        <button class="btn btn-outline-success" type="submit" name="submit">Valider</button>
                     </form>
         
 END;
@@ -87,24 +87,29 @@ END;
             }
         } else {
 
-            if ($_POST['ville'] != "" && $_POST['categ'] != "" && $_POST['search'] != ""){
-                $ville = filter_var($_POST['ville']);
-                $categorie = filter_var($_POST['categ']);
-                $search = filter_var($_POST['search']);
-                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->where('nom', 'like', '%' . $search . '%')->get();
-            } else if ($_POST['ville'] != "" && $_POST['categ'] != ""){
-                $ville = filter_var($_POST['ville']);
-                $categorie = filter_var($_POST['categ']);
-                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->get();
-            }else if ($_POST['search'] != ""){
+            if(isset($_POST['submit'])){
+                if ($_POST['ville'] != "none" && $_POST['categ'] != "none" && $_POST['search'] != ""){
+                    $ville = filter_var($_POST['ville']);
+                    $categorie = filter_var($_POST['categ']);
+                    $search = filter_var($_POST['search']);
+                    $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->where('nom', 'like', '%' . $search . '%')->get();
+                } else if ($_POST['ville'] != "none" && $_POST['categ'] != "none"){
+                    $ville = filter_var($_POST['ville']);
+                    $categorie = filter_var($_POST['categ']);
+                    $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->where('categorie', 'like', '%' . $categorie . '%')->get();
+                }else if ($_POST['search'] != ""){
+                    $search = filter_var($_POST['search']);
+                    $prod = Produit::where('nom', 'like', '%' . $search . '%')->get();
+                } else if ($_POST['ville'] != "none"){
+                    $ville = filter_var($_POST['ville']);
+                    $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->get();
+                } else if ($_POST['categ'] != "none "){
+                    $categorie = filter_var($_POST['categorie']);
+                    $prod = Produit::where('categorie', 'like', '%' . $categorie . '%')->get();
+                }
+            } else {
                 $search = filter_var($_POST['search']);
                 $prod = Produit::where('nom', 'like', '%' . $search . '%')->get();
-            } else if ($_POST['ville'] != ""){
-                $ville = filter_var($_POST['ville']);
-                $prod = Produit::where('lieu', 'like', '%' . $ville . '%')->get();
-            } else if ($_POST['categ'] != ""){
-                $categorie = filter_var($_POST['categorie']);
-                $prod = Produit::where('categorie', 'like', '%' . $categorie . '%')->get();
             }
 
             if (count($prod) == 0) {

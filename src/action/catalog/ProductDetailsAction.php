@@ -13,13 +13,13 @@ class ProductDetailsAction
         $product = Produit::where('id', $id)->first();
         $HTML = <<<END
         <div class="container mt-5 mb-5">
-    <div class="row d-flex justify-content-center ">
+    <div class="row d-flex justify-content-center">
         <div class="col-md-10">
             <div class="card">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="images p-3">
-                            <div class="text-center p-4"> <img id="main-image" src="src/img/{$product->id}.jpg" width="500" /></div>
+                            <div class="text-center p-4"> <img class="img-fluid d-block justify-content-center mr-3" id="main-image" src="src/img/{$product->id}.jpg" width="500" /></div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -45,6 +45,7 @@ class ProductDetailsAction
         </div>
     </div>
 </div>
+</div>  
 END;
     return $HTML;
     }
