@@ -15,8 +15,8 @@ class ProductsAction
         $products = Produit::all();
         foreach ($products as $product) {
             $catalogue .= <<<END
-                <div class="col">
-                    <div class="card" style="width: 18rem">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card w-auto h-auto m-2" style="width: 18rem">
                         <img class="card-img-top" src="src/img/{$product->id}.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{$product->nom}</h5>
