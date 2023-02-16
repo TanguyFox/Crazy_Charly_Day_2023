@@ -2,7 +2,6 @@
 
 namespace crazy\dispatch;
 
-use crazy\action\MapAction;
 use crazy\action\ProductsAction;
 use crazy\action\ProductDetailsAction;
 use Exception;
@@ -20,8 +19,9 @@ class Dispatcher
     {
         $action = match ($this->action) {
             'map' => new MapAction(),
-            'catalogue'=> new ProductsAction()
-            //default => new ProductsAction()
+            'catalogue'=> new ProductsAction(),
+            'productDetails' => new ProductDetailsAction(),
+            default => new ProductsAction()
         };
         try {
             $this->renderPage($action->execute());
