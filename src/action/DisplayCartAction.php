@@ -7,21 +7,24 @@ use crazy\models\Produit;
 
 class DisplayCartAction
 {
-    public function execute(): string
-    {
-        $cart = [];
-        $html = "";
-        /*if (!isset($_SESSION['user']))
-            header('Location: index.php?action=login&error=needConnection');
-        else {*/
-        $nbProduits = 0;
-        $prixTotal = 0;
-        /*$idUser = $_SESSION['user'];
+  public function execute(): string
+  {
+    if (!isset($_SESSION['user'])) {
+      header('Location: authentication.php');
+      exit;
+    }
+    
+    $cart = [];
+    $html = "";
+    
+    $nbProduits = 0;
+    $prixTotal = 0;
+    /*$idUser = $_SESSION['user'];
         $cartProducts = Cart::where('user_id', $idUser)->get();
         foreach ($cartProducts as $cP) {
             $nbProduits += $cP->quantite;
         }*/
-        $html .= <<<HTML
+    $html .= <<<HTML
 <section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -43,8 +46,8 @@ class DisplayCartAction
                   </div>
                 </div>   
 HTML;
-        if ($nbProduits == 0) {
-            $html .= <<<HTML
+    if ($nbProduits == 0) {
+      $html .= <<<HTML
                 <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
@@ -57,7 +60,7 @@ HTML;
                   </div>
                 </div>
 HTML;
-        } /*else {
+    } /*else {
             foreach ($cartProducts as $cP) {
                 $product = Produit::where('id', $cP->product_id)->first();
                 $cart[] = $product;
@@ -93,8 +96,8 @@ HTML;
 HTML;
             }
         }*/
-        $_SESSION['cart'] = $cart;
-        $html .= <<<HTML
+    $_SESSION['cart'] = $cart;
+    $html .= <<<HTML
               </div>
               <div class="col-lg-5">
 
@@ -172,7 +175,7 @@ HTML;
   </div>
 </section>
 HTML;
-        //  }
-        return $html;
-    }
+    //  }
+    return $html;
+  }
 }
