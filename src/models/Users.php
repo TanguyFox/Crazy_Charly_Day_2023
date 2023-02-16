@@ -10,4 +10,9 @@ class Users extends Eloquent\Model {
 	protected $primaryKey = 'id';
 	public $timestamps = false;
 
+    public function panier(): Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Produit::class, 'cart', 'id', 'id');
+    }
+
 }

@@ -17,6 +17,6 @@ class Produit extends Eloquent\Model
 
     public function panier(): Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Utilisateur::class, 'cart', 'id', 'id');
+        return $this->belongsToMany(Users::class, 'cart', 'id', 'id');
     }
 }
