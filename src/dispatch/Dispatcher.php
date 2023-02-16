@@ -2,6 +2,8 @@
 
 namespace crazy\dispatch;
 
+use crazy\action\AddToCartAction;
+use crazy\action\DisplayCartAction;
 use crazy\action\MapAction;
 use crazy\action\ProductsAction;
 use crazy\action\ProductDetailsAction;
@@ -20,8 +22,10 @@ class Dispatcher
     {
         $action = match ($this->action) {
             'map' => new MapAction(),
-            'catalogue'=> new ProductsAction(),
+            'products' => new ProductsAction(),
             'productDetails' => new ProductDetailsAction(),
+            'addToChart' => new AddToCartAction(),
+            'displayCart' => new DisplayCartAction(),
             default => new ProductsAction()
         };
         try {

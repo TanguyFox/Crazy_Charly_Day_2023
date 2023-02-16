@@ -14,9 +14,4 @@ class Produit extends Eloquent\Model
     {
         return $this->belongsTo('crazy\models\Categorie', 'categorie','id');
     }
-
-    public function panier(): Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(Users::class, 'cart', 'id', 'id');
-    }
 }
