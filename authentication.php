@@ -19,7 +19,6 @@ if (isset($_POST['loginEmail']) && isset($_POST['loginPassword'])) {
         exit;
     }
 
-
     // si c'est une requête de register
 } else if (isset($_POST['registerName']) && isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['registerRepeatPassword']) && isset($_POST['registerPhone'])) {
     $name = htmlspecialchars(trim($_POST['registerName']));
@@ -101,12 +100,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'register') {
                 <div class="form-check d-flex justify-content-center mb-4">
                     <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" aria-describedby="registerCheckHelpText" required />
                     <label class="form-check-label" for="registerCheck">
-                        I have read and agree to the terms
+                        J'accepte avoir lu et je m'engage à respecter les Conditions d'utilisation présentes sur le site
                     </label>
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                <button type="submit" class="btn btn-primary btn-block mb-3">S'inscrire</button>
             </form>
         </div>
     </div>
@@ -153,17 +152,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'register') {
                         <!-- Checkbox -->
                         <div class="form-check mb-3 mb-md-0">
                             <input class="form-check-input" type="checkbox" value="" id="loginCheck" />
-                            <label class="form-check-label" for="loginCheck"> Remember me </label>
+                            <label class="form-check-label" for="loginCheck">Se souvenir de moi</label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Se connecter</button>
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>Not a member? <a href="authentication.php?action=register">Register</a></p>
+                    <p>Pas encore inscrit ? <a href="authentication.php?action=register">S'inscrire</a></p>
                 </div>
             </form>
         </div>
