@@ -3,7 +3,6 @@
 namespace crazy\dispatch;
 
 use crazy\action\ProductsAction;
-use crazy\models\Produit;
 use Exception;
 
 class Dispatcher
