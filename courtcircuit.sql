@@ -8,7 +8,10 @@ CREATE TABLE cart
 (
     product_id int(3)  NOT NULL,
     user_id    int(10) NOT NULL,
-    quantity   int(3)  NOT NULL
+    quantity   int(3)  NOT NULL,
+    PRIMARY KEY (product_id, user_id),
+    KEY `product_id` (product_id),
+    KEY `user_id` (user_id)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -123,8 +126,11 @@ CREATE TABLE `orders`
     `user_id`    INT NOT NULL,
     `product_id` INT NOT NULL,
     `quantity`   INT NOT NULL,
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-    FOREIGN KEY (`product_id`) REFERENCES `produit` (`id`)
+    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date_rdv` DATETIME NOT NULL,
+    `lieu_rdv` VARCHAR(255) NOT NULL,
+    KEY `user_id` (`user_id`),
+    KEY `product_id` (`product_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -134,9 +140,6 @@ ALTER TABLE categorie
 ALTER TABLE produit
     ADD PRIMARY KEY (id),
     ADD KEY categorie (categorie);
-
-ALTER TABLE cart
-    ADD PRIMARY KEY (product_id, user_id);
 
 ALTER TABLE categorie
     MODIFY id int(11) NOT NULL AUTO_INCREMENT;
