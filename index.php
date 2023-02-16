@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 require 'header.php';
 
-use netvod\dispatch\Dispatcher;
+use crazy\dispatch\Dispatcher;
 
 session_start();
 $_GET['action'] = $_GET['action'] ?? "";
