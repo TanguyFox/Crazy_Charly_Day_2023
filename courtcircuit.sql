@@ -119,14 +119,14 @@ CREATE TABLE `users`
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`
 (
-    `id`        INT                 NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `user_id`   INT                 NOT NULL,
-    `total`     DECIMAL(10, 2)      NOT NULL,
-    `created_at` DATETIME           NOT NULL,
-    `updated_at` DATETIME           NOT NULL,
-    `status`    ENUM('pending', 'paid', 'shipped', 'delivered', 'cancelled') NOT NULL DEFAULT 'pending',
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+    `id`         INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `user_id`    INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `quantity`   INT NOT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `produit` (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 ALTER TABLE categorie
     ADD PRIMARY KEY (id);
