@@ -6,14 +6,17 @@ use crazy\action\ProductsAction;
 use crazy\models\Produit;
 use Exception;
 
-class Dispatcher {
+class Dispatcher
+{
     private string $action;
 
-    public function __construct(string $action) {
+    public function __construct(string $action)
+    {
         $this->action = $action;
     }
 
-    public function run() : void {
+    public function run(): void
+    {
         require 'header.php';
         $action = match ($this->action) {
             'signin' => new SigninAction(),
@@ -21,12 +24,12 @@ class Dispatcher {
             'logout' => new LogoutAction(),
             default => new ProductsAction()
         };
-        require 'footer.php';
         try {
             $this->renderPage($action->execute());
         } catch (Exception $e) {
             $this->renderPage($e->getMessage());
         }
+        require 'footer.php';
     }
 
     private function renderPage(string $html): void
