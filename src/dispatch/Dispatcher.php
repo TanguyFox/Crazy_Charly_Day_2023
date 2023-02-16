@@ -4,6 +4,7 @@ namespace crazy\dispatch;
 
 use crazy\action\ProductsAction;
 use crazy\action\ProductDetailsAction;
+use crazy\action\AddToChartAction;
 use Exception;
 
 class Dispatcher
@@ -22,6 +23,7 @@ class Dispatcher
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
             'productDetails' => new ProductDetailsAction(),
+            'addToChart' => new AddToChartAction(),
             default => new ProductsAction()
         };
         try {
